@@ -1,8 +1,18 @@
 def main():
     path_to_file = './books/frankenstein.txt'
-    # lines = get_book_lines(path_to_file)
-    print('word count:', get_book_words(path_to_file))
-    print('letter dictionary:', get_letter_ocurrences(path_to_file))
+    print_report(path_to_file)
+
+
+def print_report(path):
+    dictionary = get_letter_ocurrences(path)
+    sorted_keys = list(dictionary)
+    sorted_keys.sort()
+    print(f'--- Begin report of {path} ---')
+    word_count = get_book_word_count(path)
+    print(f'{word_count} words found in the document')
+    for key in sorted_keys:
+        print(f"The '{key}' character was found {dictionary[key]} times")
+    print('--- End report ---')
 
 
 def get_letter_ocurrences(path):
@@ -18,7 +28,7 @@ def get_letter_ocurrences(path):
     return output
 
 
-def get_book_words(path):
+def get_book_word_count(path):
     words = get_book_text(path).split()
     return len(words)
 
