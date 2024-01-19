@@ -1,8 +1,21 @@
 def main():
     path_to_file = './books/frankenstein.txt'
     # lines = get_book_lines(path_to_file)
-    word_count = get_book_words(path_to_file)
-    print(word_count)
+    print('word count:', get_book_words(path_to_file))
+    print('letter dictionary:', get_letter_ocurrences(path_to_file))
+
+
+def get_letter_ocurrences(path):
+    lowercase_str = get_book_text(path).lower()
+    lowercase_words = lowercase_str.split()
+    output = dict()
+    for word in lowercase_words:
+        for char in word:
+            if char in output:
+                output[char] += 1
+            else:
+                output[char] = 1
+    return output
 
 
 def get_book_words(path):
